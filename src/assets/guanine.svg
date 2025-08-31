@@ -1,0 +1,10 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景：圆角长方形（鸟嘌呤） -->
+  <rect x="2" y="10" width="60" height="44" rx="6" ry="6" fill="#f3c77a"/>
+  <!-- 字母 G：C 的基础加水平横线，白色粗线居中 -->
+  <g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M42,24 C40,22 37,21 32,21 C24,21 20,27 20,32 C20,37 24,43 32,43 C37,43 40,42 43,40"/>
+    <path d="M34,33 H44"/>
+  </g>
+  <title>Guanine (G)</title>
+</svg>

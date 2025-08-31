@@ -1,0 +1,9 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景：圆角长方形（胞嘧啶） -->
+  <rect x="2" y="10" width="60" height="44" rx="6" ry="6" fill="#7ec8e3"/>
+  <!-- 字母 C：圆角矩形路径的一部分，白色粗线 -->
+  <g fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M42,24 C40,22 37,21 32,21 C24,21 20,27 20,32 C20,37 24,43 32,43 C37,43 40,42 42,40"/>
+  </g>
+  <title>Cytosine (C)</title>
+</svg>

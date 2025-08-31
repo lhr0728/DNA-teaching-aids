@@ -1,0 +1,10 @@
+<svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- 背景：圆角长方形（腺嘌呤） -->
+  <rect x="2" y="10" width="60" height="44" rx="6" ry="6" fill="#90EE90"/>
+  <!-- 字母 A：用两条斜线和一条横杠，粗白描边，居中 -->
+  <g stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M22,44 L32,20 L42,44"/>
+    <path d="M26,34 H38"/>
+  </g>
+  <title>Adenine (A)</title>
+</svg>
