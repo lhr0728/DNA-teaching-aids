@@ -94,16 +94,16 @@ const computedAnchors = computed(() => {
   const bottomExtent = Math.max(sugarR, baseHalfH); // 下方向的最大外延
   const centerShift = (topExtent - bottomExtent) / 2; // >0 表示需要下移
   sugar.y += centerShift;
-  // 磷酸中心（相对糖外上侧45°）
+  // 磷酸中心（相对糖外上侧，水平方向增加距离）
   const phosphate = {
     ...anchorStylesBase.value.phosphate,
-    x: sugar.x - phosOffset,
-    y: sugar.y - phosOffset,
+    x: sugar.x - phosOffset * 1.5, // 水平方向增加距离
+    y: sugar.y - phosOffset * 0.78, // 垂直方向保持不变
   };
   // 碱基圆角矩形（以中心定位，offsetX/offsetY 保证 x/y 表示中心）
   const baseRect = {
-    x: sugar.x + gap,
-    y: sugar.y,
+    x: sugar.x + gap + 15,
+    y: sugar.y - 11,
     width: anchorStylesBase.value.base.width,
     height: anchorStylesBase.value.base.height,
     cornerRadius: anchorStylesBase.value.base.cornerRadius,
@@ -128,9 +128,41 @@ const anchorLinks = computed(() => {
   const sugar = computedAnchors.value.deoxyribose;
   const base = computedAnchors.value.baseRect;
   const common = { stroke: '#999', strokeWidth: 2, dash: [6,4] };
+  
+  // 磷酸到糖的连接：45度线+水平线到五边形左侧顶点
+  const phosRadius = phos.radius;
+  const sugarRadius = sugar.radius;
+  
+  // 磷酸右下边缘起点
+  const phosStartX = phos.x + phosRadius * 0.7;
+  const phosStartY = phos.y + phosRadius * 0.7;
+  
+  // 45度线段长度
+  const diagonalLength = 38;
+  
+  // 第一个折点：从磷酸边缘45度延伸
+  const bend1X = phosStartX + diagonalLength * Math.cos(Math.PI / 4);
+  const bend1Y = phosStartY + diagonalLength * Math.sin(Math.PI / 4);
+  
+  // 五边形左侧顶点 (五边形的左侧顶点在180度位置)
+  const sugarLeftX = sugar.x + sugarRadius * Math.cos(Math.PI); // 180度 = 左侧顶点
+  const sugarLeftY = sugar.y; // 水平对齐，所以Y坐标和糖中心一样
+  
+  // 糖到碱基：从糖右顶点到碱基左侧，增加虚线长度
+  const sugarRightTopAngle = 7; // 五边形右顶点在0度位置
+  const sugarRightTopX = sugar.x + 32;
+  const sugarRightTopY = sugar.y - 10;
+  const baseLeftX = base.x - base.width / 2 + 0; // 增加40像素的虚线长度
+  
   return {
-    phosToSugar: { ...common, points: [phos.x, phos.y, sugar.x, sugar.y] },
-    sugarToBase: { ...common, points: [sugar.x, sugar.y, base.x, base.y] },
+    phosToSugar: { 
+      ...common, 
+      points: [phosStartX, phosStartY, bend1X, bend1Y, sugarLeftX, bend1Y] 
+    },
+    sugarToBase: { 
+      ...common, 
+      points: [sugarRightTopX, sugarRightTopY, baseLeftX, base.y] 
+    },
   };
 });
 
